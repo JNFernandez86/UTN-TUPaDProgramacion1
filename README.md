@@ -1,6 +1,7 @@
 💻 Programación 1
 Tecnicatura Universitaria en Programación
-📍 Universidad Tecnológica Nacional
+
+📍 UNIVERSIDAD TECNOLOGICA NACIONAL
 
 ✨ Estudiante
 Nombre: Fernandez, Jorge Nahuel
