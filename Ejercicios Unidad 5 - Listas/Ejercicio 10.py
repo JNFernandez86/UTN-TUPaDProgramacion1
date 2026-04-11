@@ -20,7 +20,8 @@ for producto in range(len(ventas)):
         if(total > mayor_producto):
             mayor_producto = total
             maxproducto = producto
-    print(f"Producto {producto+1}: $ {total} unidades")
+    print(f"Producto {producto+1}: {total} unidades")
+    
 #Cálculo de el día con mayor ventas
 venta_mayor=0
 j = 0
