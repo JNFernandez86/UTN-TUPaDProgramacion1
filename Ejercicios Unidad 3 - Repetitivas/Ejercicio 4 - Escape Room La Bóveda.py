@@ -47,18 +47,19 @@ while(energia > 0 and tiempo > 0 and cerraduras_abiertas < 3 and not alarma):
                 numero = input("\nIngrese un número del 1 al 3: ")   
             if(int(numero) == 3):
                 alarma=True
+                break
             else: 
                 cerraduras_abiertas+=1
                 print("\n Ha abierto una cerradura ")
         elif(contador_forzado_cerradura==3):
             alarma=True
             print("\nATENCIÓN: FORZÓ 3 VECES SEGUIDOAS LA CERRADURA. ")
-            print("La cerradura se ha trabado: BOVEDA BLOQUEADA")
+            print("\nLa cerradura se ha trabado: BOVEDA BLOQUEADA")
             
         else:
             cerraduras_abiertas+=1
             print(f"\nFELICITACIONES: Ha abierto una cerradura quedan {3-cerraduras_abiertas} por encontrar!\n")
-        input("Presione Enter para continuar")
+        input("\nPresione Enter para continuar")
     #OPCION 2 INTENTO DE HACKEO DE PANEL        
     elif(opcion==2):
         print("\n#### Hackear panel ####\n")
@@ -93,7 +94,7 @@ while(energia > 0 and tiempo > 0 and cerraduras_abiertas < 3 and not alarma):
             energia-=10
         print(f"\nHA RECUPERADO ENERGÍA ({energia})")
 
-        input("Presione Enter para continuar")
+        input("\nPresione Enter para continuar")
 
 #RESULTADO DEL JUEGO
 print("\n=== FIN DEL JUEGO ===")
