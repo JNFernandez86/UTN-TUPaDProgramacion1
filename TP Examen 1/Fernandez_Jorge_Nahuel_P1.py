@@ -1,8 +1,12 @@
-# Programa de gestión de inventario para una ferretería
+#Alumno: Jorge Nahuel Fernandez
+#Materia: Programación 1
+#Comisión: M26-C14
+
+#TP Examen 1 - Gestión de Inventario
 
 #Inicialización de listas para almacenar herramientas y existencias, y una variable para contar la cantidad de herramientas.
-herramientas = ['Martillo', 'Destornillador', 'Llave inglesa', 'Sierra', 'Taladro']
-existencias = ["10", "15", "5", "8", "12"]
+herramientas = []
+existencias = []
 cantidad_herramientas=0
 
 # Menú de opciones
@@ -17,12 +21,14 @@ print("7: Actualización de Stock (Venta/Ingreso)")
 print("8: Salir")
 print("____________________________________________")
 opcion = input("\nIngrese la opción deseada: ") # Validación de la opción ingresada
-#El programa se ejecutará mientras la opción ingresada no sea un número entero o no esté dentro del rango de opciones válidas (0 a 7). Si la opción es inválida, se mostrará un mensaje de error y se volverá a mostrar el menú hasta que se ingrese una opción válida.
-while (opcion.isdigit() == False or int(opcion) < 0 or int(opcion) >= 8):
+opcion.replace(" ","") # Elimina los espacios en blanco de la opción ingresada para evitar errores de validación.
+#El programa se ejecutará mientras la opción ingresada no sea un número entero o no esté dentro del rango de opciones válidas (1 a 8). Si la opción es inválida, se mostrará un mensaje de error y se volverá a mostrar el menú hasta que se ingrese una opción válida.
+while (opcion.isdigit() == False or int(opcion) < 1 or int(opcion) >= 8):
     if(opcion.isdigit() == False):
-        print("\n¡ERROR, No ha ingresado un número entero!")
+        print("\n¡ERROR, No ha ingresado un número entero o ha se encuentra vacia!")
     else:
-        print("\n¡ERROR, No ha ingresado la opción válida!")
+        print("\n¡ERROR! No ha ingresado ninguna opción...")
+    
     #Después de mostrar el mensaje de error, se vuelve a mostrar el menú de opciones para que el usuario pueda ingresar una nueva opción. 
     #El proceso se repetirá hasta que se ingrese una opción válida.  
     input("\nPresione Enter para mostrar nuevamente el menú... ")
@@ -44,7 +50,7 @@ opcion = int(opcion)
 while int(opcion) != 8:
     match opcion:
         case 1: #Carga inicial de herramientas
-            print(f"\n{'<' * 10} Carga inicial de herramientas {'>' * 10}")
+            print(f"\n{'<' * 10} Carga inicial de herramientas {'>' * 10}\n")
             if len(herramientas) <= 0:#Si no hay herramientas cargadas, se solicitará al usuario que ingrese la cantidad de herramientas que se pondrán a la venta. 
                             
                 cantidad_herramientas = input("Ingrese la cantidad de herramientas que se pondran a la venta: ")
@@ -72,7 +78,7 @@ while int(opcion) != 8:
                 print("Ya existen productos cargados, por favor de elegir la opcion 6 para nuevos ingresos")
         case 2:
             #Carga de existencias
-            print(f"\n{'<' * 10} Carga de existencias {'>' * 10}")
+            print(f"\n{'<' * 10} Carga de existencias {'>' * 10}\n")
             #Si la cantidad de herramientas es diferente a la cantidad de existencias, 
             #se procederá a solicitar al usuario que ingrese la cantidad de existencias para cada herramienta.
             if len(herramientas) != len(existencias) and len(herramientas) != 0: 
@@ -113,33 +119,43 @@ while int(opcion) != 8:
                     print(f"{herramientas[herramienta]}: {existencias[herramienta]} unidades disponibles\n--------------------------------------------")
         case 4:
             #Consulta de Stock
-            print(f"\n{'<' * 10} Consulta de Stock {'>' * 10}")
-            #Se solicitará al usuario que ingrese el nombre de la herramienta que desea consultar.
-            herramienta_consulta = input("\nIngrese el nombre de la herramienta que desea consultar: ").capitalize().strip()
-            #Validación de que el nombre de la herramienta no esté vacío.
-            #Si el nombre ingresado es válido, se verificará si la herramienta se encuentra en la lista de herramientas.
-            if herramienta_consulta in herramientas:
-                i = herramientas.index(herramienta_consulta)
-                print(f"\n{herramientas[i]}: {existencias[i]} unidades disponibles")
+            print(f"\n{'<' * 10} Consulta de Stock {'>' * 10}\n")
+            if(len(herramientas)==0):
+                #Si no hay herramientas cargadas, se mostrará un mensaje indicando que el inventario se encuentra vacío 
+                #y se sugerirá al usuario que cargue los productos.
+                print("El inventario se encuentra vacío. Cargue los productos.")
             else:
-                print(f"\nLa herramienta {herramienta_consulta} no se encuentra en el inventario.")
+            #Se solicitará al usuario que ingrese el nombre de la herramienta que desea consultar.
+                herramienta_consulta = input("\nIngrese el nombre de la herramienta que desea consultar: ").capitalize().strip()
+                #Validación de que el nombre de la herramienta no esté vacío.
+                #Si el nombre ingresado es válido, se verificará si la herramienta se encuentra en la lista de herramientas.
+                if herramienta_consulta in herramientas:
+                    i = herramientas.index(herramienta_consulta)
+                    print(f"\n{herramientas[i]}: {existencias[i]} unidades disponibles")
+                else:
+                    print(f"\nLa herramienta {herramienta_consulta} no se encuentra en el inventario.")
         case 5:
             #Reporte Agotados
-            print(f"\n{'<' * 10} Reporte Agotados {'>' * 10}")
+            print(f"\n{'<' * 10} Reporte Agotados {'>' * 10}\n")
+            if(len(herramientas)==0):
+                #Si no hay herramientas cargadas, se mostrará un mensaje indicando que el inventario se encuentra vacío 
+                #y se sugerirá al usuario que cargue los productos.
+                print("El inventario se encuentra vacío. Cargue los productos.")
+            else:
             #Se recorrerá la lista de herramientas utilizando un bucle "for" y se verificará si la cantidad de existencias de cada herramienta es igual a cero.
-            for herramienta in range(len(herramientas)):
-                contador_agotados=0
-                if existencias[herramienta] == 0:
-                    #Si la cantidad de existencias es igual a cero, se mostrará el nombre de la herramienta indicando que está agotada.
-                    print(f"\n{herramientas[herramienta]}: Agotado")
-                    contador_agotados += 1
-            if contador_agotados == 0:
-                #Si no hay herramientas agotadas, se mostrará un mensaje indicando que no hay herramientas agotadas en el inventario.
-                print("\nNo hay herramientas agotadas en el inventario.")
-    
+                for herramienta in range(len(herramientas)):
+                    contador_agotados=0
+                    if existencias[herramienta] == 0:
+                        #Si la cantidad de existencias es igual a cero, se mostrará el nombre de la herramienta indicando que está agotada.
+                        print(f"\n{herramientas[herramienta]}: Agotado")
+                        contador_agotados += 1
+                if contador_agotados == 0:
+                    #Si no hay herramientas agotadas, se mostrará un mensaje indicando que no hay herramientas agotadas en el inventario.
+                    print("\nNo hay herramientas agotadas en el inventario.")
+        
         case 6:
             #Alta nuevo producto
-            print(f"\n{'<' * 10} Alta de nuevo producto {'>' * 10}")
+            print(f"\n{'<' * 10} Alta de nuevo producto {'>' * 10}\n")
             #Se solicitará al usuario que ingrese el nombre de la herramienta que desea agregar.
             while True:
                     #Validación de que el nombre de la herramienta no esté vacío y no se encuentre duplicada en la lista de herramientas.
