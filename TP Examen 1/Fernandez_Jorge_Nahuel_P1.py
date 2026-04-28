@@ -22,10 +22,11 @@ print("8: Salir")
 print("____________________________________________")
 opcion = input("\nIngrese la opción deseada: ") # Validación de la opción ingresada
 opcion.replace(" ","") # Elimina los espacios en blanco de la opción ingresada para evitar errores de validación.
+
 #El programa se ejecutará mientras la opción ingresada no sea un número entero o no esté dentro del rango de opciones válidas (1 a 8). Si la opción es inválida, se mostrará un mensaje de error y se volverá a mostrar el menú hasta que se ingrese una opción válida.
-while (opcion.isdigit() == False or int(opcion) < 1 or int(opcion) >= 8):
+while (opcion.isdigit() == False or int(opcion) < 1 or int(opcion) > 8):
     if(opcion.isdigit() == False):
-        print("\n¡ERROR, No ha ingresado un número entero o ha se encuentra vacia!")
+        print("\n¡ERROR, No has ingresado un número entero o ha se encuentra vacia!")
     else:
         print("\n¡ERROR! No ha ingresado ninguna opción...")
     
@@ -44,7 +45,6 @@ while (opcion.isdigit() == False or int(opcion) < 1 or int(opcion) >= 8):
     print("____________________________________________")
     opcion = input("\nIngrese la opción deseada: ")
 opcion = int(opcion)
-
 #El programa se ejecutará mientras la opción ingresada no sea 8 (Salir). 
 #Dentro del bucle, se utilizará una estructura de control "match" para ejecutar diferentes bloques de código según la opción seleccionada por el usuario.
 while int(opcion) != 8:
@@ -275,7 +275,28 @@ while int(opcion) != 8:
     print("8: Salir")
     print("____________________________________________")
     opcion = input("\nQuiere realizar otra opción?: ")
+    while (opcion.isdigit() == False or int(opcion) < 1 or int(opcion) > 8):
+        if(opcion.isdigit() == False):
+            print("\n¡ERROR, No has ingresado un número entero o ha se encuentra vacia!")
+        else:
+            print("\n¡ERROR! No ha ingresado ninguna opción...")
+        
+        #Después de mostrar el mensaje de error, se vuelve a mostrar el menú de opciones para que el usuario pueda ingresar una nueva opción. 
+        #El proceso se repetirá hasta que se ingrese una opción válida.  
+        input("\nPresione Enter para mostrar nuevamente el menú... ")
+        print("\n<<<<<<<<<<<<<<< Menú de Opciones >>>>>>>>>>>>>>>\n")
+        print("1: Carga inicial de herramientas")
+        print("2: Carga de existencias")
+        print("3: Visualizacion de inventario")
+        print("4: Consulta de Stock")
+        print("5: Reporte Agotados")
+        print("6: Alta nuevo producto")
+        print("7: Actualización de Stock (Venta/Ingreso)")
+        print("8: Salir")
+        print("____________________________________________")
+        opcion = input("\nIngrese la opción deseada: ")
     opcion = int(opcion)
+    
 #Cuando el usuario elige la opción de salir (opción 8), se mostrará un mensaje de despedida.
 print("\nGracias por utilizar el programa de gestión de inventario. ¡Hasta luego!")
 input("\nPresione Enter para salir... ")
